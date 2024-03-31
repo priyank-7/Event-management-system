@@ -38,4 +38,15 @@ public class EventMapper {
                 .date(event.getDate())
                 .build();
     }
+
+    public static ResponseEvent EventDTOToResponseEvent(EventDTO eventDTO){
+        return ResponseEvent.builder()
+                .eventId(eventDTO.getEvent_id())
+                .eventName(eventDTO.getEvent_name())
+                .cityName(eventDTO.getCity_name())
+                .date(eventDTO.getDate())
+                .Weather(eventDTO.getWeather())
+                .distance_km(eventDTO.getDistance_km())
+                .build();
+    }
 }

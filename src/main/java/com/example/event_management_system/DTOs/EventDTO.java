@@ -29,6 +29,6 @@ public class EventDTO {
     private String latitude;
     @NotNull(message = "Longitude is required")
     private String longitude;
-    private String distance;
     private String weather;
+    private String distance_km;
 }

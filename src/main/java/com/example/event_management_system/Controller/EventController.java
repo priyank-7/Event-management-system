@@ -24,9 +24,9 @@ public class EventController {
         return ResponseEntity.ok(this.eventService.createEvent(eventDTO));
     }
 
-    @GetMapping("/find")
-    public ResponseEntity<?> getEventsByDate(@Valid @RequestBody RequestEvent eventDTO) {
-        return ResponseEntity.ok(this.eventService.getEventsByDate(eventDTO));
+    @GetMapping("/find/{pageNumber}")
+    public ResponseEntity<?> getEventsByDate(@Valid @RequestBody RequestEvent eventDTO, @PathVariable int pageNumber) {
+        return ResponseEntity.ok(this.eventService.getEventsByDate(eventDTO, pageNumber));
     }
 
 

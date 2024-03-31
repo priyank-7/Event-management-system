@@ -1,11 +1,9 @@
 package com.example.event_management_system.Client;
 
-import com.example.event_management_system.DTOs.Distance;
-import com.example.event_management_system.DTOs.RequestEvent;
-import com.example.event_management_system.DTOs.ResponseEvent;
-import com.example.event_management_system.DTOs.Weather;
+import com.example.event_management_system.DTOs.*;
 import com.example.event_management_system.Entities.Event;
 import com.example.event_management_system.Helper.DateHelper;
+import com.example.event_management_system.Helper.EventMapper;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -15,11 +13,12 @@ public class RestClient {
     public RestClient(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
-    public ResponseEvent processEvent(Event event, RequestEvent requestEvent, ResponseEvent responseEvent) {
+    public ResponseEvent processEvent(Event event, RequestEvent requestEvent) {
 
+        ResponseEvent responseEvent = EventMapper.EventToResponseEvent(event);
         synchronized (event) {
             Thread weatherThread = new Thread(() -> {
-                String weatherUrl = "https://gg-backend-assignment.azurewebsites.net/api/Weather?code=KfQnTWHJbg1giyB_Q9Ih3Xu3L9QOBDTuU5zwqVikZepCAzFut3rqsg==&city=Port%20"+event.getCity_name()+"&date="+DateHelper.DateToString(responseEvent.getDate());
+                String weatherUrl = "https://gg-backend-assignment.azurewebsites.net/api/Weather?code=KfQnTWHJbg1giyB_Q9Ih3Xu3L9QOBDTuU5zwqVikZepCAzFut3rqsg==&city="+event.getCity_name()+"&date="+DateHelper.DateToString(event.getDate());
                 Weather weather = restTemplate.getForEntity(weatherUrl, Weather.class).getBody();
                 if (weather == null) {
                     responseEvent.setWeather("No weather data available");

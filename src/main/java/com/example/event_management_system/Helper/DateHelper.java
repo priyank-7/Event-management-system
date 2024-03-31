@@ -10,11 +10,11 @@ public class DateHelper {
         return formatter.format(date);
     }
 
-    // Get date of 14 days from now
+    // Date +14 days and convert to String
     public static Date getFutureDate(){
         Date date = new Date();
         long time = date.getTime();
-        time += 14 * 24 * 60 * 60 * 1000;
+        time += 13 * 24 * 60 * 60 * 1000;
         return new Date(time);
     }
 }
