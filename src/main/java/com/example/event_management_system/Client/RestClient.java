@@ -18,7 +18,10 @@ public class RestClient {
         ResponseEvent responseEvent = EventMapper.EventToResponseEvent(event);
         synchronized (event) {
             Thread weatherThread = new Thread(() -> {
-                String weatherUrl = "https://gg-backend-assignment.azurewebsites.net/api/Weather?code=KfQnTWHJbg1giyB_Q9Ih3Xu3L9QOBDTuU5zwqVikZepCAzFut3rqsg==&city="+event.getCity_name()+"&date="+DateHelper.DateToString(event.getDate());
+                String weatherUrl = "https://gg-backend-assignment.azurewebsites.net/api/Weather?code=KfQnTWHJbg1giyB_Q9Ih3Xu3L9QOBDTuU5zwqVikZepCAzFut3rqsg==&city="
+                        +event.getCity_name()
+                        +"&date="+DateHelper.DateToString(event.getDate());
+
                 Weather weather = restTemplate.getForEntity(weatherUrl, Weather.class).getBody();
                 if (weather == null) {
                     responseEvent.setWeather("No weather data available");
@@ -28,20 +31,25 @@ public class RestClient {
 
             });
             Thread distanceThread = new Thread(() -> {
-                String distanceUrl = "https://gg-backend-assignment.azurewebsites.net/api/Distance?code=IAKvV2EvJa6Z6dEIUqqd7yGAu7IZ8gaH-a0QO6btjRc1AzFu8Y3IcQ==&latitude1="+requestEvent.getLatitude()+"&longitude1="+requestEvent.getLongitude()+"&latitude2="+event.getLatitude()+"&longitude2="+event.getLongitude();
-                Distance distance = restTemplate.getForEntity(distanceUrl, Distance.class).getBody();
+                String distanceUrl = "https://gg-backend-assignment.azurewebsites.net/api/Distance?code=IAKvV2EvJa6Z6dEIUqqd7yGAu7IZ8gaH-a0QO6btjRc1AzFu8Y3IcQ==&latitude1="
+                        +event.getLatitude()
+                        +"&longitude1="+event.getLongitude()
+                        +"&latitude2="+requestEvent.getLatitude()
+                        +"&longitude2="+requestEvent.getLongitude();
+
+                Distance_ distance = restTemplate.getForEntity(distanceUrl, Distance_.class).getBody();
                 if (distance == null) {
                     responseEvent.setDistance_km("No distance data available");
                 } else {
-                    responseEvent.setDistance_km(distance.getDistance_km());
+                    responseEvent.setDistance_km(distance.getDistance());
                 }
             });
             weatherThread.start();
             distanceThread.start();
             try {
-                weatherThread.join();
-                distanceThread.join();
-            } catch (InterruptedException e) {
+                //weatherThread.join();
+                //distanceThread.join();
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

@@ -15,6 +15,6 @@ import java.util.List;
 @Repository
 public interface EventRepository extends JpaRepository<Event, String> {
 
-    @Query(value = "SELECT e FROM Event e where e.date >= :startDate and e.date < :endDate")
+    @Query(value = "SELECT e FROM Event e where e.date >= :startDate and e.date <= :endDate")
     Page<Event> findByDateAfter (@Param("startDate") Date startDate, @Param("endDate") Date endDate, Pageable pageable);
 }

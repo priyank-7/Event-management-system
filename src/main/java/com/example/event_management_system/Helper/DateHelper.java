@@ -11,10 +11,9 @@ public class DateHelper {
     }
 
     // Date +14 days and convert to String
-    public static Date getFutureDate(){
-        Date date = new Date();
+    public static Date getFutureDate(Date date){
         long time = date.getTime();
-        time += 13 * 24 * 60 * 60 * 1000;
+        time += 15 * 24 * 60 * 60 * 1000;
         return new Date(time);
     }
 }

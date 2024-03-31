@@ -46,8 +46,8 @@ public class EventServiceImpl implements EventService {
         Pageable pageable = PageRequest.of(pageNumber, PageManagement.PAGE_SIZE, Sort.by("date").ascending());
         // Page<Event> responseEvent = new ArrayList<>();
         System.out.println(requestEvent.getDate());
-        System.out.println(DateHelper.getFutureDate());
-        Page<Event> pages = this.eventRepository.findByDateAfter(requestEvent.getDate(), DateHelper.getFutureDate(), pageable);
+        System.out.println(DateHelper.getFutureDate(requestEvent.getDate()));
+        Page<Event> pages = this.eventRepository.findByDateAfter(requestEvent.getDate(), DateHelper.getFutureDate(requestEvent.getDate()), pageable);
         return pages.map(event -> restClient.processEvent(event, requestEvent));
 //                .orElseThrow(() -> new ResourceNotFoundException("No events found"))
 //                .forEach(event -> )
