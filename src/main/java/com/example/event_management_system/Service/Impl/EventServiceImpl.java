@@ -4,6 +4,7 @@ import com.example.event_management_system.Client.RestClient;
 import com.example.event_management_system.DTOs.EventDTO;
 import com.example.event_management_system.DTOs.RequestEvent;
 import com.example.event_management_system.DTOs.ResponseEvent;
+import com.example.event_management_system.Exception.ResourceNotFoundException;
 import com.example.event_management_system.Helper.DateHelper;
 import com.example.event_management_system.Helper.EventMapper;
 import com.example.event_management_system.Repository.EventRepository;
@@ -36,7 +37,7 @@ public class EventServiceImpl implements EventService {
     public List<ResponseEvent> getEventsByDate(RequestEvent requestEvent) {
         List<ResponseEvent> responseEvent = new ArrayList<>();
         Optional.ofNullable(this.eventRepository.findByDateBetween(requestEvent.getDate(), DateHelper.getFutureDate()))
-                .orElse(Collections.emptyList())
+                .orElseThrow(() -> new ResourceNotFoundException("No events found"))
                 .forEach(event -> {
                     responseEvent.add(restClient.processEvent(event, requestEvent, EventMapper.EventToResponseEvent(event)));
                 });
