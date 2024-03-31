@@ -17,11 +17,6 @@
 <H5>java -jar Event-management-system.jar</H5>
 <hr>
 <h1></h1>
-<H3>Bash</H3>
-<H5>mvn clean package</H5>
-<H5>java -jar Event-management-system.jar</H5>
-<hr>
-<h1></h1>
 <H3>Tech Stack</H3>
 <h3></h3>
 <p>
