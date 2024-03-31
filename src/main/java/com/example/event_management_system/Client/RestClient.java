@@ -47,8 +47,8 @@ public class RestClient {
             weatherThread.start();
             distanceThread.start();
             try {
-                //weatherThread.join();
-                //distanceThread.join();
+                weatherThread.join();
+                distanceThread.join();
             } catch (Exception e) {
                 e.printStackTrace();
             }
