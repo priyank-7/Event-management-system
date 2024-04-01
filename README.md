@@ -20,7 +20,7 @@
 <H3>Tech Stack</H3>
 <h3></h3>
 <p>
-<b>Spring Boot:</b> Streamlines development by offering auto-configuration and dependency injection, allowing you to focus on core functionalities of the application. It also reduces boilerplate code associated with server setup and configuration management.
+<b>Spring Boot:</b> Streamlines development by offering auto-configuration and dependency injection, allowing to focus on the core functionalities of the application. It also reduces boilerplate code associated with server setup and configuration management.
 <h3></h3>
 <b>Spring Data JPA:</b> Simplifies database interactions by eliminating the need for manual, low-level SQL queries for CRUD (Create, Read, Update, Delete) operations. This improves code readability and maintainability by centralizing data access logic within dedicated repositories.
 <h3></h3>
