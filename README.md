@@ -24,7 +24,7 @@
 <h3></h3>
 <b>Spring Data JPA:</b> Simplifies database interactions by eliminating the need for manual, low-level SQL queries for CRUD (Create, Read, Update, Delete) operations. This improves code readability and maintainability by centralizing data access logic within dedicated repositories.
 <h3></h3>
-<b>MySQL:</b> A mature and dependable open-source RDBMS (Relational Database Management System) offering excellent performance for handling structured data and queries. It boasts a proven track record and scales horizontally to accommodate growing demands. While MySQL is a suitable choice for this project, NoSQL databases might be a better fit for specific use cases.
+<b>MySQL:</b> A mature and dependable open-source RDBMS (Relational Database Management System) offering excellent performance for handling structured data and queries. It boasts a proven track record and scales horizontally to accommodate growing demands. NoSQL databases might be a better fit for specific use cases.
 <h3></h3>
 <b>ULIDs (Universally Unique Lexicographically Sortable Identifiers):</b> Compared to UUIDs (Universally Unique Identifiers), ULIDs provide faster generation, particularly within MySQL environments. This translates to improved database write performance by reducing insertion times by up to 50%.
 </p>
