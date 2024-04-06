@@ -46,9 +46,18 @@ public class RestClient {
             });
             weatherThread.start();
             distanceThread.start();
+
             try {
-                weatherThread.join();
-                distanceThread.join();
+                weatherThread.join(10000);
+                distanceThread.join(10000);
+                if (weatherThread.isAlive()) {
+                    weatherThread.interrupt();
+                    responseEvent.setWeather("No weather data available");
+                }
+                if (distanceThread.isAlive()) {
+                    distanceThread.interrupt();
+                    responseEvent.setDistance_km("No distance data available");
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
